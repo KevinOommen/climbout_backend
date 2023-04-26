@@ -8,7 +8,7 @@ import os
 
 
 # Create your views here.
-def chatgpt_response(request):
+def chatbot_response(request):
     from llama_index import SimpleDirectoryReader
     from llama_index import GPTSimpleVectorIndex
     os.environ['OPENAI_API_KEY'] = "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"
