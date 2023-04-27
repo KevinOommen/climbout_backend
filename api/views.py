@@ -1,6 +1,8 @@
 #import response object
 from django.http import HttpResponse
-
+from  .serializers import eventserializer
+from rest_framework.generics import ListAPIView, CreateAPIView,DestroyAPIView,RetrieveAPIView,UpdateAPIView
+from .models import events
 #chatbot imports
 import os
 
@@ -23,3 +25,7 @@ def chatbot_response(request):
 
     print(resp)
     return HttpResponse(resp)
+
+class add_event(CreateAPIView):
+    queryset=events.objects.all()
+    serializer_class=eventserializer

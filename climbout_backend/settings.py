@@ -42,7 +42,6 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'api.apps.ApiConfig',
-    'user_api.apps.UserApiConfig',
     'corsheaders',
     'rest_framework'
 ]
@@ -88,8 +87,11 @@ WSGI_APPLICATION = 'climbout_backend.wsgi.application'
 
 DATABASES = {
     'default': {
-         'ENGINE': 'django.db.backends.sqlite3',
-          'NAME': BASE_DIR / 'db.sqlite3',
+         'ENGINE': 'django.db.backends.postgresql',
+          'NAME': 'climbout_db',
+          'USER': 'postgres',
+          'PASSWORD': 'admin',
+          'HOST':'localhost',
     }
 }
 
@@ -135,14 +137,10 @@ STATIC_URL = 'static/'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-REST_FRAMEWORK = {
-    'DEFAULT_PERMISSION_CLASSES': (
-        'rest_framework.permissions.IsAuthenticated',
-    ),
+REST_FRAMEWORK = {  
+   
+    "DEFAULT_SCHEMA_CLASS": 'rest_framework.schemas.coreapi.AutoSchema'
 
-    'DEFAULT_AUTHENTICATION_CLASSES' : (
-        'rest_framework.authentication.SessionAuthentication',
-    )
 }
 
-AUTH_USER_MODEL = 'user_api.AppUser'
+#AUTH_USER_MODEL = 'user_api.AppUser'

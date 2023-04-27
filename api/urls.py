@@ -5,5 +5,5 @@ from . import views
 
 urlpatterns = [
     path('chatbot_response', views.chatbot_response, name='chatbot_response'),
-
+    path('add_event', views.add_event.as_view(), name='add_event'),
 ]
