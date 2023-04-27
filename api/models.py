@@ -4,6 +4,7 @@ from django.db import models
 class events(models.Model):    
     location= models.TextField(blank=False)
     date = models.DateField()
+    time=models.TextField(default="00:00:00")
     name = models.TextField(blank=False)
     desc = models.TextField(blank=False)
 
