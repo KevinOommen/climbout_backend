@@ -43,17 +43,18 @@ def chatbot_response(request):
         print("\nthe file is genuine\n******take immediate action******")
     else:
         print("not that imp")
+@api_view(['GET'])
 def chatbot_query(request):
     import os
     from llama_index import SimpleDirectoryReader
     from llama_index import GPTSimpleVectorIndex
     os.environ['OPENAI_API_KEY'] = "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"
 
-    documents = SimpleDirectoryReader(r'C:\Microsoft\Desktop\lama\try1\data').load_data()
+    documents = SimpleDirectoryReader(os.path.join(CHATBOT_DATA_DIR,'query')).load_data()
     index = GPTSimpleVectorIndex.from_documents(documents)
 
-    response = index.query(self.request.data['text'])
-    return Response(response)
+    response = index.query(request.body.decode('utf-8'))
+    return HttpResponse(response)
 
 
 class add_event(CreateAPIView):
